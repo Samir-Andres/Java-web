@@ -5,88 +5,67 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.PreparedStatement;
 
-/**
- * Servlet implementation class PersonasServlet
- */
+import DAO.PersonaDAO;
+import Modelo.Persona;
+
+import java.io.IOException;
+import java.util.List;
+
 @WebServlet("/PersonasServlet")
 public class PersonasServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PersonasServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	response.setContentType("text/html");
-		
-		PrintWriter out = response.getWriter();
-		
-		
-		out.print("<!DOCTYPE>");
-		out.print("<html>");
-		out.print("<head>");
-		out.print("<h1>Bienvenido</h1>");
-		out.print("<h4>P</h4>");
-		out.print("</head>");
-		out.print("<body>");
-		out.print("</body>");
-		out.print("</html>");
-		
+
+	PersonaDAO dao = new PersonaDAO();
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String accion = request.getParameter("accion");
+
+		if (accion == null || accion.equals("listar")) {
+			List<Persona> lista = dao.read();
+			request.setAttribute("personas", lista);
+			request.getRequestDispatcher("vistas/listar.jsp").forward(request, response);
+
+		} else if (accion.equals("nuevo")) {
+			request.getRequestDispatcher("vistas/formulario.jsp").forward(request, response);
+
+		} else if (accion.equals("editar")) {
+			try {
+				int id = Integer.parseInt(request.getParameter("id"));
+				Persona p = dao.read(id);
+				request.setAttribute("persona", p);
+				request.getRequestDispatcher("vistas/formulario.jsp").forward(request, response);
+			} catch (NumberFormatException e) {
+				response.sendRedirect("PersonasServlet?accion=listar");
+			}
+
+		} else if (accion.equals("eliminar")) {
+			try {
+				int id = Integer.parseInt(request.getParameter("id"));
+				dao.delete(id);
+			} catch (NumberFormatException e) {
+				
+			}
+			response.sendRedirect("PersonasServlet");
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// Recoger datos del formulario
+		int id = request.getParameter("id") != null ? Integer.parseInt(request.getParameter("id")) : 0;
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String estado_civil = request.getParameter("estado_civil");
 		String anio = request.getParameter("anio");
-		
-		String sql = "Insert into personas (nombre, apellido, estado_civil, anio) values (?, ?, ?, ?)";
-		
-		conexion conn = new conexion();
-		
-		try {
-			PreparedStatement pStmt = conn.conectarBD().prepareStatement(sql);
-			
-			String Año = anio;
-			
-			pStmt.setString(1, nombre);
-			pStmt.setString(2, apellido);
-			pStmt.setString(3, estado_civil);
-			pStmt.setString(4, Año);
-			
-			int rowsAffected = pStmt.executeUpdate();
-			
-			if(rowsAffected > 0) {
-				response.sendRedirect("/Nuevo_proyect/index.jsp");
-				
-			}else {
-				response.getWriter().print("Probelama al insertar una persona");
-			}
-		}catch (Exception e) {
-			out.print("Todos los datos debe son obligatorio");
-			
-		
+
+		if (id > 0) {
+			dao.update(id, nombre, apellido, estado_civil, anio);
+		} else {
+			dao.create(nombre, apellido, estado_civil, anio);
 		}
-		out.print("Dato guardado");
-		
-		
+
+		response.sendRedirect("PersonasServlet");
 	}
-
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
