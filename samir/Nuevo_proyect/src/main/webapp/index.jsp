@@ -104,7 +104,6 @@ width: 5%;
 	}
 	%>
 
-
 	<h1 class="crear">Crear un registro de una persona</h1>
 
 	<form action="PersonasServlet" method="post">
@@ -142,12 +141,13 @@ width: 5%;
 	
 	
 	<div class="Opciones">
-			<a type="submit" class="btn btn-success">Actualizar los datos de una persona?</a>
+			<a href="Actualizar.jsp" type="submit" class="btn btn-success">Actualizar los datos de una persona?</a>
 			<a href="" class="btn btn-success">Quiere ver la información una persona?</a>
 			<a href="Eliminar.jsp" type="submit" class="btn btn-success">Quiere eliminar una persona?</a>
 
 		
 	</div>
+
 
 </body>
 </html>
