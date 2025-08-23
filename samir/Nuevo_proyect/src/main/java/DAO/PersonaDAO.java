@@ -38,7 +38,7 @@ public class PersonaDAO {
 	public Persona read(int id) {
 		String sql = "SELECT nombre, apellido, estado_civil, anio FROM personas WHERE id = ?";
 		try (Connection conn = conexion.getConnection(); PreparedStatement pst = conn.prepareStatement(sql)) {
-			pst.setInt(Integer.parseInt(1, id));
+			pst.setInt(1, id);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				Persona p = new Persona();

@@ -29,17 +29,17 @@ input {
 .btn-info {
 	text-align: center;
 	margin-top: 10px;
-	display:inline-block;
+	display: inline-block;
 }
 
 .btn-danger {
 	text-align: center;
 	margin-top: 10px;
 }
-.btn-success{
-margin-top: 10px;
-}
 
+.btn-success {
+	margin-top: 10px;
+}
 
 .contenido {
 	background-color: #87B1DB;
@@ -64,29 +64,30 @@ margin-top: 10px;
 .crear {
 	text-align: center;
 }
-.Opciones{
-            width: 50%;
-            padding: 50px;
-            border: 1px solid #ccc;
-            box-sizing: border-box; /* Importante */
-            margin: 50px;
-            margin-left: 25%;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            text-align: center;
-        }
-        
-.Opciones1{
-width: 5%;
-  padding: 0px;
 
-
+.Opciones {
+	width: 50%;
+	padding: 50px;
+	border: 1px solid #ccc;
+	box-sizing: border-box; /* Importante */
+	margin: 50px;
+	margin-left: 25%;
+	background-color: #f9f9f9;
+	border-radius: 5px;
+	text-align: center;
 }
- 
+
+.Opciones1 {
+	width: 5%;
+	padding: 0px;
+}
 </style>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -136,16 +137,17 @@ width: 5%;
 		<div class="Opciones1">
 			<button type="submit" class="btn-primary">Registrar</button>
 		</div>
-		
-	</form>
-	
-	
-	<div class="Opciones">
-			<a href="Actualizar.jsp" type="submit" class="btn btn-success">Actualizar los datos de una persona?</a>
-			<a href="" class="btn btn-success">Quiere ver la información una persona?</a>
-			<a href="Eliminar.jsp" type="submit" class="btn btn-success">Quiere eliminar una persona?</a>
 
-		
+	</form>
+
+
+	<div class="Opciones">
+		<a href="Actualizar.jsp" type="submit" class="btn btn-success">Actualizar
+			los datos de una persona?</a> <a href="" class="btn btn-success">Quiere
+			ver la información una persona?</a> <a href="Eliminar.jsp" type="submit"
+			class="btn btn-success">Quiere eliminar una persona?</a>
+
+
 	</div>
 
 

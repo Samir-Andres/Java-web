@@ -23,9 +23,11 @@ public class PersonasServlet extends HttpServlet {
 		String accion = request.getParameter("accion");
 
 		if (accion == null || accion.equals("listar")) {
+			
 			List<Persona> lista = dao.read();
 			request.setAttribute("personas", lista);
 			request.getRequestDispatcher("vistas/listar.jsp").forward(request, response);
+			
 
 		} else if (accion.equals("nuevo")) {
 			request.getRequestDispatcher("vistas/formulario.jsp").forward(request, response);
@@ -53,7 +55,8 @@ public class PersonasServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Recoger datos del formulario
+
+		
 		int id = request.getParameter("id") != null ? Integer.parseInt(request.getParameter("id")) : 0;
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
